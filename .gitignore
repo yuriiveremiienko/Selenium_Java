@@ -1,5 +1,6 @@
 .idea
 out
+Selenium_Java.iml
 .settings
 bin
 .classpath
