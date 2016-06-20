@@ -18,29 +18,32 @@ public class Runner {
     public static void main(String[] args) {
         Runner runner = new Runner();
 
-        runner.numberOfStudents = 25;
-        runner.numberOfProfessors = 5;
+        runner.numberOfStudents = 100;
+        runner.numberOfProfessors = 20;
 
         Students [] stud = new Students[runner.numberOfStudents];
         Professor [] prof = new Professor[runner.numberOfProfessors];
 
         runner.createStudents(stud);
         runner.createProfessors(prof);
-//        for (int i = 0; i < stud.length; i++) {
-//            System.out.println(stud[i].firstname + " " + stud[i].lastname + " " + stud[i].subject);
-//        }
-//        for (int i = 0; i < prof.length; i++) {
-//            System.out.println(prof[i].firstname + " " + prof[i].lastname + " " + prof[i].subject);
-//        }
 
-        runner.assignStudentsToGroups(stud, prof);
+        for (int i = 0; i < prof.length; i++) {
+            runner.assignStudentsToGroups(stud, prof[i]);
+        }
+
+    }
+
+    public String selectSubject() {
+
+        int x = (int) (Math.random()*Subjects.subjects.length);
+        return Subjects.subjects[x];
     }
 
     public void createStudents(Students [] stud) {
 
         for (int i = 0; i < stud.length; i++) {
             String subject = selectSubject();
-            stud[i] = new Students("StudentName" + i, "StudentLastname" + i, subject);
+            stud[i] = new Students("StudentName" + (i + 1), "StudentLastname" + (i + 1), subject, false);
         }
     }
 
@@ -48,27 +51,29 @@ public class Runner {
 
         for (int i = 0; i < prof.length; i++) {
             String subject = selectSubject();
-            prof[i] = new Professor("ProfessorName" + i, "ProfessorLastname" + i, subject);
+            prof[i] = new Professor("ProfessorName" + (i + 1), "ProfessorLastname" + (i + 1), subject);
         }
     }
 
-    public void assignStudentsToGroups(Students [] stud, Professor [] prof) {
+    public void assignStudentsToGroups(Students [] stud, Professor prof) {
 
+        int k = 0;
 
-        for (int i = 0; i < prof.length ; i++) {
+        System.out.println("\nGroup of " + prof.lastname + ": [" + prof.subject + "]");
 
+        for (int i = 0; i < stud.length; i++) {
 
-            for (int j = 0; j < stud.length; j++) {
+            if (k == 5) {
+                break;
+            }
 
-
+            if(stud[i].subject.equals(prof.subject) && !stud[i].inGroup) {
+                stud[i].inGroup = true;
+                k++;
+                System.out.println(stud[i].firstname + " " + stud[i].lastname);
             }
         }
+
     }
 
-
-    public String selectSubject() {
-
-        int x = (int) (Math.random()*Subjects.subjects.length);
-        return Subjects.subjects[x];
-    }
 }
