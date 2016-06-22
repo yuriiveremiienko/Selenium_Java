@@ -5,3 +5,5 @@ Selenium_Java.iml
 bin
 .classpath
 .project
+chromedriver.exe
+
