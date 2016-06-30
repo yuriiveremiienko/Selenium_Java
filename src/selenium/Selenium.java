@@ -15,7 +15,7 @@ public class Selenium {
 
     public static void main(String[] args) {
 //        WebDriver driver = new FirefoxDriver();
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Leon\\Desktop\\Selenium_Java\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Java\\Desktop\\Selenium_Java\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://old.qalight.com.ua/zapisatsya-na-kursy/");
